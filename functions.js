@@ -1,27 +1,46 @@
-var user = {
+let user = {
     username: '',
     password: ''
 };
-var usuarioCadastrado = {
-    username: 'testando',
+let registeredUser = {
+    username: 'andre',
     password: '1234'
 };
+let storagedUser = localStorage.setItem('user', JSON.stringify(registeredUser));
 
-let username = document.getElementById('username');
-let password = document.getElementById('password');
-let login = document.getElementById('login');
+let username;
+let password;
 
-const handleChangeUsername = (event) => {user.username = event.target.value};
-const handleChangePassword = (event) => {user.password = event.target.value};
+let txtWelcome = document.getElementById('txtWelcome');
 
-login.addEventListener('click',clicou);
-username.addEventListener('change', handleChangeUsername);
-password.addEventListener('change', handleChangePassword);
+function login() {
+    username = document.getElementById('username').value;
+    password = document.getElementById('password').value;
 
-function clicou () {
-    if(user.username == usuarioCadastrado.username && user.password == usuarioCadastrado.password) {
+    user.username = username;
+    user.password = password;
+    console.log(user);
+    checkLogin();
+}
+
+function checkLogin() {
+    /* if(user.username == registeredUser.username && user.password == registeredUser.password) {
         console.log('Logado');
     } else {
-        console.log('credenciais incorretas');
+        console.log('Credenciais incorretas');
+    } */
+    const userSavedLocal = JSON.parse(localStorage.getItem('user'));
+
+    if (user.username == userSavedLocal.username && user.password == userSavedLocal.password) {
+        location.href = './homepage.html';
+    } else {
+        location.reload();
+        alert('Credenciais não existem no sistema, verifique seus dados e tente novamente.');
     }
+
+}
+
+function logout() {
+    localStorage.clear();
+    location.href = './index.html';
 }
