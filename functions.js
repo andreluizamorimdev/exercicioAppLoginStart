@@ -4,7 +4,9 @@ let user = {
 };
 let registeredUser = {
     username: 'andre',
-    password: '1234'
+    password: '1234',
+    url: 'https://lh3.googleusercontent.com/a/AEdFTp6RTJd9Qmsm28G8Q5k6vxEza7TLeUKPRtm2JXLxHg=s288-p-rw-no',
+    email: 'andre@teste.com'
 };
 let storagedUser = localStorage.setItem('user', JSON.stringify(registeredUser));
 
@@ -38,9 +40,4 @@ function checkLogin() {
         alert('Credenciais não existem no sistema, verifique seus dados e tente novamente.');
     }
 
-}
-
-function logout() {
-    localStorage.clear();
-    location.href = './index.html';
 }
